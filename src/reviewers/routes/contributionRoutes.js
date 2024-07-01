@@ -8,6 +8,7 @@ const {ContributionController}  =   require('../controller/contributionControlle
 
 router.get('/contribution/list-pending',ContributionController.list_pending);
 router.post('/contribution/view', ContributionController.view_contribution);
+router.post('/contribution/update', ContributionController.update_contribution);
 
 module.exports = router;
 
