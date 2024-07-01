@@ -13,6 +13,8 @@ const moduleCORS        =   require('cors');
 //------------------ROUTES IMPORTS---------------------------------------------------|
 const routeAUTHusers           =   require('./src/users/routes/authRoutes');
 
+const routeREQUESTusers = require('./src/users/routes/requestRoutes');
+
 //------------------ROUTES IMPORTS---------------------------------------------------|
 
 
@@ -38,6 +40,7 @@ app.use(moduleBODYPARSER.urlencoded({ extended: true }));
 
 //-----------APIs SECTION-------------------------------------------------------------|
 app.use('/api/users',routeAUTHusers);
+app.use('/api/users',routeREQUESTusers);
 
 //-----------APIs SECTION------------------------------------------------------------------|
 
