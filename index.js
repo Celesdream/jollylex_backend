@@ -21,6 +21,7 @@ const routeACCOUNTusers = require('./src/users/routes/accountRoutes');
 
 const routeREQUESTreviewers = require('./src/reviewers/routes/requestRoutes');
 const routeCONTRIBUTIONreviewers = require('./src/reviewers/routes/contributionRoutes');
+const routeACCOUNTreviewers = require('./src/reviewers/routes/accountRoutes');
 //------------------ROUTES IMPORTS---------------------------------------------------|
 
 
@@ -53,6 +54,7 @@ app.use('/api/users',routeACCOUNTusers);
 
 app.use('/api/reviewers',routeREQUESTreviewers);
 app.use('/api/reviewers',routeCONTRIBUTIONreviewers);
+app.use('/api/reviewers',routeACCOUNTreviewers);
 
 //-----------APIs SECTION------------------------------------------------------------------|
 
