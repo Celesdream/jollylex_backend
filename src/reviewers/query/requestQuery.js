@@ -36,7 +36,8 @@ const RequestQuery =
     `,
 
 
-    UPDATE_REQUEST: `
+    UPDATE_REQUEST: 
+    `
     UPDATE join_request
     SET status_option = $1,
         log_date = CASE 
@@ -45,7 +46,9 @@ const RequestQuery =
                    END
     WHERE id = $2
     RETURNING *
-`,
+    `,
+
+    
 }
 
 

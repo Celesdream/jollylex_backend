@@ -12,7 +12,7 @@ const Request =
     {
         try
         {
-            const result = await moduleDB.many
+            const result = await moduleDB.manyOrNone
             ({
                 text : moduleREQUESTQUERY.SELECT_LIST,
                 rowMode : 'json'
