@@ -2,6 +2,7 @@
 
 // controller/wordController.js
 const WordService = require('../model/word');
+const moduleVALIDATORAPI    = require('../middleware/validatorApi');
 
 const WordController = {
     addWords: async (req, res) => {
@@ -34,7 +35,46 @@ const WordController = {
             console.error('Error:', error);
             res.status(500).json({ message: 'Error', error: { message: error.message } });
         }
-    }
+    },
+
+
+
+    getUserContributions: async (req, res) => 
+        {
+            try 
+            {
+                const requiredFields = ['userId']
+                const { userId } = req.body;
+
+                const validation = moduleVALIDATORAPI.validateRequiredFields(req.body, requiredFields);
+
+                if (!validation.success) 
+                {
+                    res.status(400).json({ message: validation.message, missingFields: validation.missingFields });
+                    return; // Detener la ejecución si hay campos faltantes
+                }
+    
+
+    
+                // Llamar al servicio para obtener el historial de contribuciones del usuario
+                const contributions = await WordService.getUserContributions(userId);
+    
+                // Responder con el historial de contribuciones del usuario
+                if (contributions) 
+                {
+                    res.status(200).json({ contributions });
+                } 
+                else 
+                {
+                    res.status(404).json({ message: 'No se encontraron contribuciones para el usuario.' });
+                }
+            } 
+            catch (error) 
+            {
+                console.error('Error:', error);
+                res.status(500).json({ message: 'Error', error: { message: error.message } });
+            }
+        }
 }
 
 module.exports = {
