@@ -17,6 +17,9 @@ const routeREQUESTusers = require('./src/users/routes/requestRoutes');
 const routeWORDSusers = require('./src/users/routes/wordRoutes');
 const routeACCOUNTusers = require('./src/users/routes/accountRoutes');
 
+
+
+const routeREQUESTreviewers = require('./src/reviewers/routes/requestRoutes');
 //------------------ROUTES IMPORTS---------------------------------------------------|
 
 
@@ -45,6 +48,9 @@ app.use('/api/users',routeAUTHusers);
 app.use('/api/users',routeREQUESTusers);
 app.use('/api/users',routeWORDSusers);
 app.use('/api/users',routeACCOUNTusers);
+
+
+app.use('/api/reviewers',routeREQUESTreviewers);
 
 //-----------APIs SECTION------------------------------------------------------------------|
 
