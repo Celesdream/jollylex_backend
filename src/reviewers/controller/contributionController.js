@@ -26,6 +26,27 @@ const ContributionController =
             console.log(error);
             res.status(500).json({ message: 'Error', error: { message: error.message } });
         }
+    },
+
+    view_contribution: async (req, res) => {
+        try {
+            const requiredFields = ['idContribution'];
+            const { idContribution } = req.body;
+            const validation = moduleVALIDATORAPI.validateRequiredFields(req.body, requiredFields);
+
+            if (!validation.success) {
+                res.status(400).json({ message: validation.message, missingFields: validation.missingFields });
+                return;
+            }
+
+            const contribution = await moduleCONTRIBUTION.select_one(idContribution);
+            if (contribution) {
+                res.status(200).json({ contribution });
+            }
+        } catch (error) {
+            console.log(error);
+            res.status(500).json({ message: 'Error', error: { message: error.message } });
+        }
     }
 }
 
@@ -34,3 +55,5 @@ module.exports =
 {
     ContributionController
 }
+
+

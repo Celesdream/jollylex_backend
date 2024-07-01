@@ -25,9 +25,25 @@ const Contribution =
             console.error('Error:', error);
             throw error;
         }
+    },
+
+
+    select_one: async (idContribution) => {
+        try {
+            const result = await moduleDB.one({
+                text: moduleCONTRIBUTIONQUERY.SELECT_ONE,
+                values: [idContribution],
+                rowMode: 'json'
+            });
+            return result;
+        } catch (error) {
+            console.error('Error:', error);
+            throw error;
+        }
     }
 }
 
 
 
 module.exports = Contribution;
+
