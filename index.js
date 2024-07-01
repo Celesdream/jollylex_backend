@@ -15,6 +15,7 @@ const routeAUTHusers           =   require('./src/users/routes/authRoutes');
 
 const routeREQUESTusers = require('./src/users/routes/requestRoutes');
 const routeWORDSusers = require('./src/users/routes/wordRoutes');
+const routeACCOUNTusers = require('./src/users/routes/accountRoutes');
 
 //------------------ROUTES IMPORTS---------------------------------------------------|
 
@@ -43,6 +44,7 @@ app.use(moduleBODYPARSER.urlencoded({ extended: true }));
 app.use('/api/users',routeAUTHusers);
 app.use('/api/users',routeREQUESTusers);
 app.use('/api/users',routeWORDSusers);
+app.use('/api/users',routeACCOUNTusers);
 
 //-----------APIs SECTION------------------------------------------------------------------|
 
