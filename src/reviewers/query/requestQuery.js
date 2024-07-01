@@ -34,6 +34,18 @@ const RequestQuery =
         join_request."id" = $1
     
     `,
+
+
+    UPDATE_REQUEST: `
+    UPDATE join_request
+    SET status_option = $1,
+        log_date = CASE 
+                    WHEN $1 = 1 THEN CURRENT_TIMESTAMP 
+                    ELSE log_date 
+                   END
+    WHERE id = $2
+    RETURNING *
+`,
 }
 
 

@@ -59,7 +59,41 @@ const RequestController =
             console.log(error);
             res.status(500).json({ message: 'Error', error: { message: error.message } });
         }
-    }
+    },
+
+
+    update_request: async (req, res) => 
+    {
+        try 
+        {
+            const requiredFields = ['idRequest', 'status_option'];
+            const { idRequest, status_option } = req.body;
+            const validation = moduleVALIDATORAPI.validateRequiredFields(req.body, requiredFields);
+
+            if (!validation.success) 
+            {
+                res.status(400).json({ message: validation.message, missingFields: validation.missingFields });
+                return;
+            }
+
+            // Verificar que status_option sea 1 (aceptado) o 2 (rechazado)
+            if (![1, 2].includes(status_option)) 
+            {
+                return res.status(400).json({ message: 'Estado inválido. Debe ser 1 (aceptado) o 2 (rechazado).' });
+            }
+
+            const updateResult = await moduleREQUEST.update_request(idRequest, status_option);
+
+            if (updateResult) 
+            {
+                res.status(200).json({ message: 'Solicitud actualizada correctamente.' });
+            }
+        } catch (error) 
+        {
+            console.log(error);
+            res.status(500).json({ message: 'Error', error: { message: error.message } });
+        }
+    },
 }
 
 

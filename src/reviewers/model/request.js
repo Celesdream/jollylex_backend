@@ -45,7 +45,27 @@ const Request =
             console.error('Error:', error);
             throw error;
         }
-    }
+    },
+
+
+    update_request: async (idRequest, status_option) => 
+    {
+        try 
+        {
+            const result = await moduleDB.one
+            ({
+                text: moduleREQUESTQUERY.UPDATE_REQUEST,
+                values: [status_option, idRequest],
+                rowMode: 'json'
+            });
+            return result;
+        } 
+        catch (error) 
+        {
+            console.error('Error:', error);
+            throw error;
+        }
+    },
 }
 
 
