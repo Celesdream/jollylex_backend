@@ -45,11 +45,16 @@ const ContributionQuery =
     `,
 
 
-    CHECK_DUPLICATE_SIMILARITY: `
-        SELECT word
-        FROM pure_repo_purep
-        WHERE word % $1
-        ORDER BY similarity(word, $1) DESC
+    CHECK_DUPLICATE_SIMILARITY: 
+    `
+        SELECT 
+            word
+        FROM 
+            pure_repo_purep
+        WHERE 
+            word % $1
+        ORDER BY 
+            similarity(word, $1) DESC
         LIMIT 1
     `,
 

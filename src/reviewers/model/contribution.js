@@ -44,59 +44,68 @@ const Contribution =
 
 
 
-    update_contribution: async (idContribution, status_option, idReviewer) => {
-        try {
-            const contribution = await moduleDB.one({
+    update_contribution: async (idContribution, status_option, idReviewer) => 
+    {
+        try 
+        {
+            const contribution = await moduleDB.one
+            ({
                 text: moduleCONTRIBUTIONQUERY.SELECT_ONE,
                 values: [idContribution],
                 rowMode: 'json'
             });
 
-            if (status_option === 1) {
+            if (status_option === 1) 
+            {
                 const normalizedWord = normalizeWord(contribution.word);
 
-                const duplicateCheck = await moduleDB.oneOrNone({
+                const duplicateCheck = await moduleDB.oneOrNone
+                ({
                     text: moduleCONTRIBUTIONQUERY.CHECK_DUPLICATE_SIMILARITY,
                     values: [normalizedWord],
                     rowMode: 'json'
                 });
 
-                if (duplicateCheck) {
+                if (duplicateCheck) 
+                {
                     return { message: 'Palabra duplicada encontrada.' };
                 }
 
-                await moduleDB.none({
+                await moduleDB.none
+                ({
                     text: moduleCONTRIBUTIONQUERY.INSERT_APPROVED,
                     values: [contribution.word, contribution.meaning, contribution.type, idReviewer],
                     rowMode: 'json'
                 });
 
-                await moduleDB.none({
+                await moduleDB.none
+                ({
                     text: moduleCONTRIBUTIONQUERY.INCREMENT_REVIEW_COUNT,
                     values: [idReviewer],
                     rowMode: 'json'
                 });
             }
 
-            await moduleDB.none({
+            await moduleDB.none
+            ({
                 text: moduleCONTRIBUTIONQUERY.UPDATE_CONTRIBUTION,
                 values: [status_option, idContribution],
                 rowMode: 'json'
             });
 
             return { message: 'Contribución actualizada correctamente.' };
-        } catch (error) {
+        } 
+        catch (error) 
+        {
             console.error('Error:', error);
             throw error;
         }
     }
-
-
-
 }
 
 
-function normalizeWord(word) {
+function normalizeWord(word) 
+{
     return word
         .normalize('NFD') 
         .replace(/[\u0300-\u036f]/g, '')
