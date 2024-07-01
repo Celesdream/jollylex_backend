@@ -14,6 +14,7 @@ const moduleCORS        =   require('cors');
 const routeAUTHusers           =   require('./src/users/routes/authRoutes');
 
 const routeREQUESTusers = require('./src/users/routes/requestRoutes');
+const routeWORDSusers = require('./src/users/routes/wordRoutes');
 
 //------------------ROUTES IMPORTS---------------------------------------------------|
 
@@ -41,6 +42,7 @@ app.use(moduleBODYPARSER.urlencoded({ extended: true }));
 //-----------APIs SECTION-------------------------------------------------------------|
 app.use('/api/users',routeAUTHusers);
 app.use('/api/users',routeREQUESTusers);
+app.use('/api/users',routeWORDSusers);
 
 //-----------APIs SECTION------------------------------------------------------------------|
 
